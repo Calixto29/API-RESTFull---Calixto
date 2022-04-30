@@ -1,12 +1,18 @@
+//libs externas
 const express = require('express');
 
 const consign = require('consign');
-module.exports = () => { 
-    const app = express()
 
-    consign()
-        .include('controle')
-        .into(app)
+const bodyParser = require('body-parser');
 
-    return app;
+module.exports = () =>{ 
+    const app = express();
+
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json())
+
+    consign()  
+    .include('controle')
+    .into(app)
+return app;
 }
