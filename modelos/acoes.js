@@ -6,7 +6,7 @@ class Cadastrar { //Cadastrar User
         const dataCriacao = moment().format('YYYY-MM-DD HH:MM:SS') 
         const data = moment(cadastro.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS') //converte o formato de data 
         const dataValida = moment(data).isSameOrAfter(dataCriacao)
-        const nameValido = cadastro.teste2.length >=5
+        const nameValido = cadastro.teste2.length >=5 //alrterar p/ nome user
 
         const validarDados = [
             {
@@ -67,6 +67,33 @@ class Cadastrar { //Cadastrar User
             } else {
                 res.status(201).json(dadosUser)
 
+            }
+        })
+    }
+
+    alterarDados(id, valores, res) {
+        if(valores.data){
+            valores.data = moment(valores.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+        }
+        const sql = 'UPDATE teste SET ? WHERE id=?'
+
+        conexao.query(sql, [valores, id], (erro, resultados) => {
+            if(erro){
+                res.status(400).json(erro)
+            } else {
+                res.status(201).json(resultados)
+            }
+        })
+    }
+
+    deletarDados(id, res) {
+        const sql = 'DELETE FROM teste WHERE id= ?'
+
+        conexao.query(sql, id, (erro, resultados) => {
+            if(erro) {
+                res.status(400).json(erro)
+            } else {
+                res.status(200).json(resultados)
             }
         })
     }
