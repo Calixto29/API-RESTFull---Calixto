@@ -1,12 +1,19 @@
+const Cadastro = require('../modelos/acoes')
+
 module.exports = app => {
     app.get('/api', (req, res) => res.send('Você está na rota da API de agendamento de tarefas!')); 
 
     app.post('/api', (req, res) => {
-        console.log(req.body)
+        const cadastro = req.body
 
-        console.log('Atendimento enviado!')
+        Cadastro.cria(cadastro) //erro
         
-        res.send('Post atendimento!')
+        res.send('Post de Agendamento!')
     });
 }
+
+
+
+
+
 

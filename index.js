@@ -13,7 +13,7 @@ conexao.connect(erro => {
         Tabelas.init(conexao)
         
         const app = customizacaoExpress();
-        app.listen(3000, () => console.log('O Servidor está rodando na porta 3000'));
+        app.listen(3000, () => console.log('O Servidor está rodando na porta 3000...'));
     }
 })
 
