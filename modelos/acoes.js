@@ -87,13 +87,13 @@ class Cadastrar { //Cadastrar User
     }
 
     deletarDados(id, res) {
-        const sql = 'DELETE FROM teste WHERE id= ?'
+        const sql = 'DELETE FROM teste WHERE id=?'
 
         conexao.query(sql, id, (erro, resultados) => {
             if(erro) {
                 res.status(400).json(erro)
             } else {
-                res.status(200).json(resultados)
+                res.status(201).json(resultados)
             }
         })
     }
