@@ -8,7 +8,6 @@ module.exports = app => {
 
         Cadastro.cria(cadastro, res) //erro
         
-        //res.send('Post de Agendamento!')
     });
 }
 
