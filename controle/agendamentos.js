@@ -6,9 +6,9 @@ module.exports = app => {
     app.post('/api', (req, res) => {
         const cadastro = req.body
 
-        Cadastro.cria(cadastro) //erro
+        Cadastro.cria(cadastro, res) //erro
         
-        res.send('Post de Agendamento!')
+        //res.send('Post de Agendamento!')
     });
 }
 

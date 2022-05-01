@@ -2,7 +2,7 @@ const moment = require('moment');
 const conexao = require('../conexaoBd/conexao');
 
 class Cadastrar { //Cadastrar
-    cria(cadastro) { //Cadastra o usuário
+    cria(cadastro, res) { //Cadastra o usuário
         const dataCriacao = moment().format('YYYY-MM-DD HH:MM:SS') 
         const data = moment(cadastro.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS') //converte o formato de data 
         const cadastroDataCriacao = {...cadastro, dataCriacao, data}
@@ -10,9 +10,9 @@ class Cadastrar { //Cadastrar
                             //OBJETO        //FUNÇAO
         conexao.query(sql, cadastroDataCriacao, (erro, resultados) => {
             if (erro) {
-                console.log(erro)
+                res.status(400).json(erro)
             } else {
-                console.log(resultados)
+                res.status(201).json(resultados)
             }
         })
         
