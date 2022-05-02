@@ -1,4 +1,4 @@
-const { alterarDados } = require('../modelos/acoes');
+const { alterarDados, pesquisarIdUser } = require('../modelos/acoes');
 const Cadastro = require('../modelos/acoes')
 
 module.exports = app => {
@@ -14,7 +14,8 @@ module.exports = app => {
 
         Cadastro.pesquisarIdUser(id, res)
         
-    })
+        
+    });
 
     //Cadastrar User
     app.post('/api/v1/user', (req, res) => {
@@ -30,14 +31,14 @@ module.exports = app => {
         const valores = req.body
 
         Cadastro.alterarDados(id, valores, res)
-    })
+    });
     
     //Deletar User
     app.delete('/api/v1/user/:id' , (req, res) => {
         const id = parseInt(req.params.id)
 
         Cadastro.deletarDados(id, res)
-    })
+    });
     
     //Listar Task
     app.get('/api/v1/task', (req, res) => {
@@ -50,7 +51,7 @@ module.exports = app => {
 
         Cadastro.pesquisarIdTask(id, res)
         
-    })
+    });
 
     //Criar Task
     app.post('/api/v1/task', (req, res) => {
@@ -66,7 +67,7 @@ module.exports = app => {
         const valores = req.body
 
         Cadastro.alterarDadosTask(id, valores, res)
-    })
+    });
     
 
     //Deletar Task
@@ -74,7 +75,7 @@ module.exports = app => {
         const id = parseInt(req.params.id)
 
         Cadastro.deletarDadosTask(id, res)
-    })
+    });
 }
 
 

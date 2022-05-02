@@ -2,9 +2,9 @@ class Tabelas {
     init(conexao) {
         this.conexao = conexao
         console.log('Chamando tabelas... \n')
-        this.tabelaUser()
-        this.tabelaTask()
-        this.criarPK()
+        this.tabelaUser();
+        this.tabelaTask();
+        this.criarPK();
     }
 
     //Criar Tabela User
@@ -18,7 +18,7 @@ class Tabelas {
                 console.log('Tabela USER criada ou encontrada com sucesso! \n')
             }
         })
-    }
+    };
 
     //Criar Tabela Task
     tabelaTask() {
@@ -32,7 +32,7 @@ class Tabelas {
             }
         })
 
-    }
+    };
 
     //Criar Chave estrangeira
     criarPK() {
@@ -46,7 +46,7 @@ class Tabelas {
             }
         })
 
-    }
+    };
     
 }
 
