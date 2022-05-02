@@ -2,14 +2,43 @@ const moment = require('moment');
 
 const conexao = require('../conexaoBd/conexao');
 
+function validarCpf(CPF) {
+    var soma = 0;
+var resto;
+var CPF = CPF;
+
+    if(CPF == '00000000000') return false;
+    for(i=1; i<=9; i++) soma = soma + parseInt(CPF.substring(i-1, i)) * (11 - i);
+    resto = (soma * 10) % 11;
+
+    if((resto == 10) || (resto == 11)) resto = 0;
+    if(resto != parseInt(CPF.substring(9, 10))) return false;
+
+    soma = 0;
+    for(i = 1; i <= 10; i++) soma = soma + parseInt(CPF.substring(i-1, i))*(12-i);
+    resto = (soma * 10) % 11;
+
+    if((resto == 10) || (resto == 11)) resto = 0;
+    if(resto != parseInt(CPF.substring(10, 11))) return false;
+    return true;
+
+}
+
 class Cadastrar { 
     
     
     criaUser(cadastro, res) {
         //valida senha
+            
         if(cadastro.password.length <6) {
-            res.status(400).json('Senha deve ser maior ou igual que 6 caracteres')
+            return res.status(400).json('Senha deve ser maior ou igual que 6 caracteres')
         }
+
+        console.log(validarCpf(cadastro.cpf))
+        if(!validarCpf(cadastro.cpf)) {
+            return res.status(400).json('CPF inválido!')
+        }
+
              
         
         const user = {
